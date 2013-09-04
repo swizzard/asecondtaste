@@ -1,0 +1,80 @@
+.nav li a:link {
+	background-color: #DB6502;
+	color: #666666;
+	}
+
+.nav li a:hover, .nav li a:focus {
+    background-color: #DB6502;
+    color: #000;
+}
+
+body {
+    background-color: #aaaaaa;
+}
+
+body div {
+    background-color: #ffffff;
+    border: 1px solid #666666;
+}
+
+body a {
+    color: #93B1FF;
+    text-decoration: none;
+}
+
+body a:visited {
+    text-decoration: none;
+    border-bottom: 1px dotted;
+}
+
+body a:hover, body a:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.main {
+    border: none;
+    float: right;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.form-actions {
+    background-color: inherit;
+    *background-color: inherit;
+}
+
+.hanging-indent {
+    padding-left: 3em;
+    text-indent: -3em;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.menu li {
+    font-weight: 700;
+}
+
+strong {
+    font-weight: 700;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.tooltip {
+	border: 0;
+}
+
+.accordion div {
+	border: none;
+	}
+
+.error {
+	color: #FF7700;
+	}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/search_style.css" />
+{% endblock %}
+{% block java %}
+<script type="text/javascript" src="/static/searches.js"></script>
+{% endblock %}
+{% block title %}Search{% endblock %}
+{% block head %}Search{% endblock %}
+{% block content %}
+{% autoescape off %}
+<div id="searches">
+	<form id="search" action="" method="get">
+		<table border="0" cellpadding="0" cellspace="0">
+			<tbody class="search">
+				{% for form in formset.forms %}
+				<tr>
+					<td class="row">{{ form.row }}</td>
+					<td class="query">{{ form.query }}</td>
+					<td class="bool">{{ form.bools }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		{{ formset.management_form }}
+		<input type="submit" value="Submit" id="submit">
+	</form>
+</div>
+{% if formset.errors or errors %}
+<div id="errors">
+	<h3>The following errors were encountered while trying to submit your search:</h3>
+	{% for x,y in formset.errors.items %}
+	<p>{{ x }} : {{ y }}</p>
+	{% endfor %}
+	{{ errors }}
+</div>
+{% endif %}
+<div id="notes">
+	<p>Searching by dish names, locations, and restaurants is case-insensitive.</p>
+	<p>Searching by course uses  case-insensitive exact matching. Valid courses are Appetizer, Main, and Dessert.</p>
+	<p>Years should be entered YYYY. Five-year periods span either the first or second half of a decade, and should be entered YYYY-YYYY. Example valid five-year periods are 1900-1905, 1995-2000, etc.</p>
+	<p>Regular expression search follows MySQL regular expression syntax, as described <a href="http://dev.mysql.com/doc/refman/5.1/en/regexp.html" target="_blank">here</a>.</p>
+</div>
+
+{% endautoescape %}
+<br /><br /><br /><br /> <br /><br /><br />
+{% endblock %}
+
+{% block footer %}
+<div id="warning">
+	<p>NOTE: This site and the information it contains are still in development. Some information may be missing or inaccurate.</p>
+</div>
+	<div class="credits">
+		Created and maintained by <a href="/about#sam">Sam Raker</a> and <a href="/about#rachel">Rachel Rakov</a>
+		<br />
+		Data graciously provided by <a href="http://menus.nypl.org" target="_blank">What's on the Menu?</a>
+	</div>
+{% endblock %}

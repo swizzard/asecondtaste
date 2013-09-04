@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+	{% block title %}Main{% endblock %}
+	{% block head %}Welcome!{% endblock %}
+	{% block content %}
+	<h2>{{ intro }}</h2>
+	<div class="main">
+	{% autoescape off %}
+	<p class="intro2">{{ about1 }}</p>
+	<p class="intro2">{{ about2 }}</p>
+	{% endautoescape %}
+	</div>
+</body>
+{% endblock %}
+{% block footer %}
+	<div class="credits">
+		Created and maintained by <a href="/about#sam">Sam Raker</a> and <a href="/about#rachel">Rachel Rakov</a>
+		<br />
+		Data graciously provided by <a href="http://menus.nypl.org" target="_blank">What's on the Menu?</a>
+	</div>
+{% endblock %}

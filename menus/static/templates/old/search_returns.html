@@ -1,0 +1,16 @@
+{% extends 'search.html' %}
+{% block search_returns %}
+<p>You searched for: <strong>{{ query }}</strong></p>
+{% if error %}
+	<p class="error">Please submit a search term.</p>
+{% elif results %}
+	<p>Found {{ results|length }} result{{ result|pluralize }}.</p>
+	<ul>
+		{% for book in books %}
+		<li>{{ dish.name }}</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>No dishes matched your query.</p>
+{% endif %}
+{% endblock %}

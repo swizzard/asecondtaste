@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_toolkit %}
+{% block title %}Search{% endblock %}
+{% block big_title %}Search{% endblock %}
+{% block main-content %}
+<h3>Search</h3>
+	<div class="row-fluid form-action formset">
+		{% csrf_token %}
+		<form action="" id="searchform" class="searchform" method="get">
+			{% if formset %}
+				{% bootstrap_formset formset=formset layout="horizontal" %}
+			{% elif form %}
+				{% bootstrap_form form=form layout="horizontal" %}
+			{% endif %}
+			{% for error in errors %}
+				<p class="error">{{ error }}</p>
+			{% endfor %}
+			<button class="btn btn-info" id="more" type="button">More</button>
+			<input type="submit" class="btn btn-primary center" id="search" name="search" value="Search"/>
+		</form>
+	</div>
+	{% if submitted %}
+	<div class="row-fluid">
+		{% if items %}
+		<table class="table table-hover table-striped table-bordered table-condensed">
+			<thead>
+				<tr>
+					<th colspan="6">
+						Search Results
+					</th>
+				</tr>
+				<tr>
+					<th>
+						Dish Name&nbsp;&nbsp;&nbsp;&nbsp;
+					</th>
+					<th>
+						Restaurant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</th>
+					<th>
+						Location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</th>
+					<th>
+						Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</th>
+					<th>
+						Price&nbsp;&nbsp;
+					</th>
+					<th>
+						Course
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+		{% for item in items %}
+			<tr class="result">
+				<td>
+					{% if item.dish.name %}
+					{{ item.dish.name|title }}
+					{% else %}
+					(no title)
+					{% endif %}
+				</td>
+				<td>
+					{% if item.page.menu.restaurant %}
+					{{ item.page.menu.restaurant|title }}
+					{% else %}
+					(no restaurant)
+					{% endif %}
+				</td>
+				<td>
+					{% if item.page.menu.location %}
+					{{ item.page.menu.location|title }}
+					{% else %}
+					(no location)
+					{% endif %}
+				</td>
+				<td>
+					{% if item.page.menu.year %}
+					{{ item.page.menu.year }}
+					{% else %}
+					(no year)
+					{% endif %}
+				</td>
+				<td>
+					{% if item.price %}
+					${{ item.price|floatformat:2 }}
+					{% else %}
+					(no price)
+					{% endif %}
+				</td>
+				<td>
+					{% if item.dish.classification.classification %}
+					{{ item.dish.classification.classification|title }}
+					{% else %}
+					(no classification)
+					{% endif %}
+				</td>
+			</tr>
+		{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<p class="error">No results matched your query.</p>
+		{% endif %}
+	</div>
+	{% endif %}
+	<script src="{% static 'formstuff2.js' %}"></script>
+{% endblock %}

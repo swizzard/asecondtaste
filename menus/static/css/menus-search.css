@@ -1,0 +1,12 @@
+.formset div {
+	border: none;
+	}
+.query {
+	margin-top: 3px;
+	}
+.control-group>label {
+	font-weight:700;
+	}
+.control-group.query {
+	margin-bottom: 0px;
+	}

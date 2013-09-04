@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block main-content %}
+<div class="row-fluid">
+		{% if submitted %}
+			<br /><br />
+			<p class="success">{% if valid %}Valid{% else %}Invalid{% endif %} form submitted!</p>
+			<p class="success">The method was {{ posted }}</p><br/>
+			{% for error in errors %}
+			<p class="error">{{ error }}</p>
+			{% empty %}
+			<p class="success">No validation errors!</p>
+			{% endfor %}
+		{% else %}
+			<p class="error">Not posted!</p>
+		{% endif %}
+		{% for k,v in data %}
+			<p class="request">{{ k }} : {{ v }}</p>
+		{% empty %}
+			<p class="error">No request data found!</p>
+		{% endfor %}
+</div>
+{% endblock %}

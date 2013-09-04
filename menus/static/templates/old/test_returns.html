@@ -1,0 +1,12 @@
+<html>
+<head>
+	<title>Request Test</title>
+</head>
+<body>
+<ul>
+{% for k,v in request.lists %}
+	<li>{{ k }}:{{ v }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>

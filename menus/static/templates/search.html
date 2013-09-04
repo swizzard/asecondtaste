@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block main-content %}
+{% load bootstrap_toolkit %}
+{% load static %}
+<h3>Search</h3>
+	<form action="/results/" method="get">
+		{% csrf_token %}
+		<legend>Search the Database</legend>
+		<div class="search-form" id="search-form">
+			<input type="text" class="flex-form" placeholder="" id="textInput">
+			<label class="radio">
+				{% for choice in form.parameter %}
+					{% bootstrap_form parameter layout="vertical" %}
+					<input type="radio" id="{{ choice.label }}" value="{{ choice.choice_value }}" class="parameter">{{ choice.tag }}</input>
+				{% empty %}
+					<p class="error">No parameter buttons!</p>
+				{% endfor %}
+				<!--
+<input type="radio" id="location" value="location" class="parameter">Location</input>
+				<input type="radio" id="restaurant" value="restaurant" class="parameter">Restaurant Name</input>
+				<input type="radio" id="course" value="course" class="parameter">Course</input>
+				<input type="radio" id="regex" value="regex" class="parameter">Regular Expression</input>
+ -->
+			</label>
+			<button class="btn btn-info" type="button" id="more">More</button>
+			<label class="radio inline" id="bool">
+				{% for choice in form.bool %}
+					<input type="radio" id="{{ choice.label }}" value="{{ choice.choice_value }}" class="bool">{{ choice.tag }}</input>
+				{% empty %}
+					<p class="error">No bool buttons!</p>
+				{% endfor %}
+				<!--
+<input type="radio" id="and" value="AND" checked="checked">AND</input>
+				<input type="radio" id="or" value="OR">OR</input>
+ -->
+			</label>
+		</div>
+		<button class="btn btn-primary" value="submit" id="submit">Search!</button>
+	</form>
+	{% if submitted %}
+		<p>It worked!</p>
+	{% endif %}
+	{% for error in errors %}
+		<p class="error">{{ error }}</p>
+	{% empty %}
+		<p>No form validation errors!</p>
+	{% endfor %}
+<script src="{% static 'formstuff.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block style %}<link rel="stylesheet" type="text/css" href="/static/results_style.css">{% endblock %}
+{% block java %}<script type="text/javascript">
+$(document).ready(function () {'use strict';
+$("#back").click(function () {window.location.href = '/search/';});
+$("tr").filter(":even").css({"background-color":"#4A4A4A4A","color":"#000000"});})</script>{% endblock %}
+{% block title %}Results{% endblock %}
+{% block content %}
+{% if items %}
+<table border = "1">
+	<tr>
+		<td>Name</td>
+		<td>Restaurant</td>
+		<td>Location</td>
+		<td>Year</td>
+		<td>Course or Type</td>
+		<td>Price</td>
+	</tr>
+	{% for k,obj in items %}
+		<tr>
+			<td>
+				{% if names.k %}
+					{{ names.k }}
+				{% else %}
+					None
+				{% endif %}
+			</td>
+			<td>
+				{% if restaurants.k %}
+					{{ restaurants.k }}
+				{% else %}
+					None
+				{% endif %}
+			</td>
+			<td>
+				{% if locations.k %}
+					{{ locations.k }}
+				{% else %}
+					None
+				{% endif %}
+			</td>
+			<td>
+				{% if years.k %}
+					{{ years.k }}
+				{% else %}
+					None
+				{% endif %}
+			</td>
+			<td>
+				{% if classifications %}
+					{{ classifications.k }}
+				{% else %}
+					None
+				{% endif %}	
+			</td>
+			<td>
+				{% if obj %}
+					{{ obj.formatted_price }}
+				{% else %}
+					None
+				{% endif %}
+			</td>
+		</tr>
+	{% endfor %}
+{% else %}
+<p class="noresults">Sorry, no dishes matched your criteria.</p>
+</div>
+{% endif %}
+{% if errors %}
+<div id="errors">
+{% for error in errors %}
+<p>{{ error }}</p>
+{% endfor %}
+{% endif %}
+</div>
+<div id="back">
+<button type="button" id="goback">Search Again</button>
+</div>
+<hr />
+{% endblock %}
+{% block footer %}{% endblock %}

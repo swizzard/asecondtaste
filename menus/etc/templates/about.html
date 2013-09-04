@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+	<h1>{% block title %}About{% endblock %}</h1>
+	{% block java %}<script type="text/javascript" src="/static/do_email.js"></script>{% endblock %}
+	{% block content %}
+	{% autoescape off %}
+	<h2>{{ about_proj }}</h2>
+	<div class="main">
+	{% load staticfiles %}
+	{% for k,v in qanda.items %}
+	<h3>{{ k }}</h3>
+	<p>{{ v }}</p>
+	{% endfor %}
+	<br /><hr />
+	<h2>{{ about_auths }}</h2>
+	<a id="sam"></a>
+	<div class="main"><h3>{{ about_sam }}</h3><p class="sam">{{ sam }}</p>
+	<hr />
+	<a id="rachel"></a>
+	<h3>{{ about_rachel }}</h3>
+	<p class="rachel">{{ rachel }}</p>
+	</div>
+	<hr />
+	<p class="contact">Click here to contact us!</p>
+</body>
+{% endautoescape %}
+{% endblock %}
